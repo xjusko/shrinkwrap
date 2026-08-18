@@ -77,8 +77,6 @@ public abstract class AddPackageTestBase {
 
     @AfterEach
     public void tearDown() {
-        // URLClassLoader.close() requires JDK7+
-
         if (tempFile.isFile() && !tempFile.delete()) {
             LOG.warning("Potential file leak: Could not delete " + tempFile);
         }
@@ -121,7 +119,6 @@ public abstract class AddPackageTestBase {
         @Override
         public Enumeration<URL> getResources(final String name) throws IOException {
             if (name.contains("donotchange")) {
-                // Collections.emptyEnumeration() requires JDK7+
                 return EMPTY_ENUMERATION;
             }
             return super.getResources(name);
