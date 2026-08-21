@@ -1056,7 +1056,7 @@ public abstract class DynamicContainerTestBase<T extends Archive<T>> extends Arc
         JavaArchive archive = ShrinkWrap.create(JavaArchive.class);
 
         // Here the exception should be thrown
-        Assertions.assertThrows(IllegalArgumentException.class, () -> archive.addPackages(true, Package.getPackage(packageName)));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> archive.addPackages(true, ClassLoader.getSystemClassLoader().getDefinedPackage(packageName)));
     }
 
     /**
